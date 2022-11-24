@@ -9,16 +9,30 @@ class Todo {
 
 void main() {
   runApp(
-    MaterialApp(
-      title: 'Passing Data',
-      home: TodoScreen(
-        todos: List.generate(20, (index) => Todo(
-          'Todo $index',
-          'A description of what needs to be done for Todo $index'
-        )),
-      ),
+    TodoApp(
+      todos: List.generate(
+        20,
+        (i) => Todo(
+          'Todo $i',
+          'A description of what needs to be done for Todo $i'
+        )
+      )
     )
   );
+}
+
+class TodoApp extends StatelessWidget {
+  final List<Todo> todos;
+  const TodoApp({Key? key, required this.todos}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Passing Data',
+      home: TodoScreen(
+        todos: todos)
+      );
+    }
 }
 
 class TodoScreen extends StatelessWidget {
